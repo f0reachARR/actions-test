@@ -1,7 +1,7 @@
 name: Issue
 on:
   issues:
-    types: [labeled]
+    types: [labeled, closed]
   workflow_dispatch:
     inputs:
       issue_number:
