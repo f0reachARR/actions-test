@@ -7,6 +7,11 @@ on:
       issue_number:
         description: 'Issue Number'
         required: true
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
 
 jobs:
   printJob:
