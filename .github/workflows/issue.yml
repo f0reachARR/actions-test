@@ -1,5 +1,6 @@
 name: Issue
 on:
+  push:
   issues:
     types: [labeled, closed]
   workflow_dispatch:
