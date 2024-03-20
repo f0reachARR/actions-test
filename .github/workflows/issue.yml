@@ -1,12 +1,13 @@
 name: Issue
 on:
   push:
+  release:
   issues:
     types: [labeled, closed]
   workflow_dispatch:
     inputs:
       issue_number:
-        description: 'Issue Number'
+        description: "Issue Number"
         required: true
         type: choice
         options:
