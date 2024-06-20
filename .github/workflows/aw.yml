@@ -1,0 +1,15 @@
+name: build-and-test-differential
+
+on:
+  push:
+
+jobs:
+  build-and-test-differential:
+    runs-on: ubuntu-latest
+    container: ghcr.io/autowarefoundation/autoware:latest-prebuilt-cuda
+    steps:
+      - name: Show disk space before the tasks
+        run: |
+          df -h
+          mount
+          du -h -d 1 /
