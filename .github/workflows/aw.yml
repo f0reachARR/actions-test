@@ -6,7 +6,13 @@ on:
 jobs:
   build-and-test-differential:
     runs-on: ubuntu-latest
-    container: ghcr.io/autowarefoundation/autoware:latest-prebuilt-cuda
+    container:
+      image: ghcr.io/autowarefoundation/autoware:latest-prebuilt-cuda
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /opt:/__h/opt
+        - /usr:/__h/usr
+        - /mnt:/__h/mnt
     steps:
       - name: Show disk space before the tasks
         run: |
