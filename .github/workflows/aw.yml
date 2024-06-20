@@ -12,4 +12,6 @@ jobs:
         run: |
           df -h
           mount
+          docker info
+          docker ps -a
           du -h -d 1 /
