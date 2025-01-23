@@ -22,6 +22,5 @@ jobs:
     steps:
       - name: Dump GitHub context
         run: |
-          cat /proc/cpuinfo
-          cat /proc/meminfo
-          uname -a
+          lscpu
+          free -h
