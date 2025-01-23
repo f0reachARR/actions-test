@@ -7,6 +7,7 @@ jobs:
     name: Print event
     runs-on: ubuntu-22.04-arm
     steps:
+      - uses: actions/checkout@v4
       - name: Test
         run: |
           g++ -o example example.cpp
