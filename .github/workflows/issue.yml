@@ -1,26 +1,13 @@
 name: Issue
 on:
   push:
-  release:
-  issues:
-    types: [labeled, closed]
-  workflow_dispatch:
-    inputs:
-      issue_number:
-        description: "Issue Number"
-        required: true
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
 
 jobs:
   printJob:
     name: Print event
     runs-on: ubuntu-22.04-arm
     steps:
-      - name: Dump GitHub context
+      - name: Test
         run: |
-          lscpu
-          free -h
+          g++ -o example example.cpp
+          ./example
