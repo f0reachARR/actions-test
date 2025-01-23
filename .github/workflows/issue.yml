@@ -18,10 +18,10 @@ on:
 jobs:
   printJob:
     name: Print event
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     steps:
       - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github.event) }}
         run: |
-          echo "$GITHUB_CONTEXT"
+          cat /proc/cpuinfo
+          cat /proc/meminfo
+          uname -a
