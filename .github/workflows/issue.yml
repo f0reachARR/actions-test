@@ -25,10 +25,10 @@ jobs:
         id: exit_code_test
         run: |
           g++ -o example example.cpp | tee xxx.txt
-          echo "exit_code_1=$?" >> $GITHUB_OUTPUT
+          echo "exit_code_1=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
 
           g++ -o example2 example2.cpp | tee yyy.txt
-          echo "exit_code_2=$?" >> $GITHUB_OUTPUT
+          echo "exit_code_2=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
 
       - name: Print exit codes
         run: |
