@@ -18,6 +18,7 @@ jobs:
           name: install
           run-id: ${{ github.event.workflow_run.id }}
           path: current
+          github-token: ${{ secrets.GH_PAT }}
 
       - name: Get PR number
         if: github.event_name == 'workflow_run'
