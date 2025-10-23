@@ -1,14 +1,22 @@
 name: Issue
 on:
   push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   printJob:
     name: Print event
-    runs-on: ubuntu-22.04-arm
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
-      - name: Test
+      - name: Store Pull Request number to artifact
+        if: github.event_name == 'pull_request'
         run: |
-          g++ -o example example.cpp
-          ./example
+          mkdir install
+          echo "PR_NUMBER=${{ github.event.number }}" > install/pr_number.txt
+
+      - name: Upload install directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: install
+          path: install
