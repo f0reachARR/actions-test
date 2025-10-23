@@ -1,0 +1,35 @@
+name: Check API compatibility
+on:
+  workflow_run:
+    workflows: ["Issue"]
+    types:
+      - completed
+
+jobs:
+  api_check:
+    name: TrafficSim API Check
+    runs-on: ubuntu-22.04
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Download current install artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: install
+          run-id: ${{ github.event.workflow_run.id }}
+          path: current
+
+      - name: Get PR number
+        if: github.event_name == 'workflow_run'
+        id: get-pr-number
+        run: |
+          PR_NUMBER=$(cat current/pr_number.txt | sed 's/PR_NUMBER=//')
+          echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Upload abidiff log
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            testing nanoda
+          message-id: "abidiff-log"
+          issue: ${{ steps.get-pr-number.outputs.number }}
